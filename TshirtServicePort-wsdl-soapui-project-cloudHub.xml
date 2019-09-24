@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="832ceaa3-2f60-482e-a2e0-55d17ec63b22" activeEnvironment="Default" name="MULE_SOAP_TshirtServicePort?wsdl_cloudhub" resourceRoot="" soapui-version="5.5.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="2ca5d1d1-61d4-4075-8208-f0c8c405ffb0" wsaVersion="NONE" name="TshirtServiceSoapBinding" type="wsdl" bindingName="{http://mulesoft.org/tshirt-service}TshirtServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://test-bzhang-my-soap-project.de-c1.cloudhub.io/TshirtService/TshirtServicePort?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://test-bzhang-my-soap-project.de-c1.cloudhub.io/TshirtService/TshirtServicePort?wsdl"><con:part><con:url>http://test-bzhang-my-soap-project.de-c1.cloudhub.io/TshirtService/TshirtServicePort?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="TshirtService" targetNamespace="http://mulesoft.org/tshirt-service" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ms="http://mulesoft.org/tshirt-service">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://mulesoft.org/tshirt-service" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <xsd:element name="ListInventory">
+        <xsd:complexType>
+          <xsd:sequence/>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ListInventoryResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element maxOccurs="unbounded" minOccurs="1" name="inventory" type="ms:InventoryItem"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="InventoryItem">
+        <xsd:sequence>
+          <xsd:element name="productCode" type="xsd:string"/>
+          <xsd:element name="size" type="ms:Size"/>
+          <xsd:element name="description" type="xsd:string"/>
+          <xsd:element name="count" type="xsd:integer"/>
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="Size">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="S"/>
+          <xsd:enumeration value="M"/>
+          <xsd:enumeration value="L"/>
+          <xsd:enumeration value="XL"/>
+          <xsd:enumeration value="XXL"/>
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="OrderTshirt">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="size" type="ms:Size"/>
+            <xsd:element name="email" type="xsd:string"/>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element name="address1" type="xsd:string"/>
+            <xsd:element name="address2" type="xsd:string"/>
+            <xsd:element name="city" type="xsd:string"/>
+            <xsd:element name="stateOrProvince" type="xsd:string"/>
+            <xsd:element name="postalCode" type="xsd:string"/>
+            <xsd:element name="country" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="OrderTshirtResponse">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element name="orderId" type="xsd:string"/>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="TrackOrder">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="email" type="xsd:string"/>
+            <xsd:element name="orderId" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="TrackOrderResponse">
+        <xsd:complexType>
+          <xsd:all>
+            <xsd:element name="orderId" type="xsd:string"/>
+            <xsd:element name="status" type="xsd:string"/>
+            <xsd:element name="size" type="ms:Size"/>
+          </xsd:all>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="AuthenticationHeader">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="apiKey" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="APIUsageInformation">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="apiCallsRemaining" type="xsd:integer"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="TshirtFault">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="errorrStuff" type="xsd:integer"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="TrackOrder">
+    <wsdl:part element="ms:TrackOrder" name="body"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TshirtFault">
+    <wsdl:part element="ms:TshirtFault" name="fault"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AuthenticationHeader">
+    <wsdl:part element="ms:AuthenticationHeader" name="header"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="APIUsageInformation">
+    <wsdl:part element="ms:APIUsageInformation" name="header"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ListInventory">
+    <wsdl:part element="ms:ListInventory" name="body"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="OrderTshirtResponse">
+    <wsdl:part element="ms:OrderTshirtResponse" name="body"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="OrderTshirt">
+    <wsdl:part element="ms:OrderTshirt" name="body"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ListInventoryResponse">
+    <wsdl:part element="ms:ListInventoryResponse" name="body"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="TrackOrderResponse">
+    <wsdl:part element="ms:TrackOrderResponse" name="body"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="TshirtServicePortType">
+    <wsdl:operation name="OrderTshirt">
+      <wsdl:input message="ms:OrderTshirt"></wsdl:input>
+      <wsdl:output message="ms:OrderTshirtResponse"></wsdl:output>
+      <wsdl:fault message="ms:TshirtFault" name="TshirtFault"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ListInventory">
+      <wsdl:input message="ms:ListInventory"></wsdl:input>
+      <wsdl:output message="ms:ListInventoryResponse"></wsdl:output>
+      <wsdl:fault message="ms:TshirtFault" name="TshirtFault"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="TrackOrder">
+      <wsdl:input message="ms:TrackOrder"></wsdl:input>
+      <wsdl:output message="ms:TrackOrderResponse"></wsdl:output>
+      <wsdl:fault message="ms:TshirtFault" name="TshirtFault"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TshirtServiceSoapBinding" type="ms:TshirtServicePortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="OrderTshirt">
+      <soap:operation soapAction="http://mulesoft.org/tshirt-service/order-tshirt"/>
+      <wsdl:input>
+        <soap:body namespace="http://mulesoft.org/tshirt-service" use="literal"/>
+        <soap:header message="ms:AuthenticationHeader" part="header" use="literal"></soap:header>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body namespace="http://mulesoft.org/tshirt-service" use="literal"/>
+        <soap:header message="ms:APIUsageInformation" part="header" use="literal"></soap:header>
+      </wsdl:output>
+      <wsdl:fault name="TshirtFault">
+        <soap:body namespace="http://mulesoft.org/tshirt-service" use="literal"/>
+        <soap:header message="ms:APIUsageInformation" part="header" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ListInventory">
+      <soap:operation soapAction="http://mulesoft.org/tshirt-service/list-inventory"/>
+      <wsdl:input>
+        <soap:body namespace="http://mulesoft.org/tshirt-service" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body namespace="http://mulesoft.org/tshirt-service" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="TshirtFault">
+        <soap:body namespace="http://mulesoft.org/tshirt-service" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="TrackOrder">
+      <soap:operation soapAction="http://mulesoft.org/tshirt-service/track-order"/>
+      <wsdl:input>
+        <soap:body namespace="http://mulesoft.org/tshirt-service" use="literal"/>
+        <soap:header message="ms:AuthenticationHeader" part="header" use="literal"></soap:header>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body namespace="http://mulesoft.org/tshirt-service" use="literal"/>
+        <soap:header message="ms:APIUsageInformation" part="header" use="literal"></soap:header>
+      </wsdl:output>
+      <wsdl:fault name="TshirtFault">
+        <soap:body namespace="http://mulesoft.org/tshirt-service" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TshirtService">
+    <wsdl:documentation/>
+    <wsdl:port binding="ms:TshirtServiceSoapBinding" name="TshirtServicePort">
+      <soap:address location="http://test-bzhang-my-soap-project.de-c1.cloudhub.io/TshirtService/TshirtServicePort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://test-bzhang-my-soap-project.de-c1.cloudhub.io/TshirtService/TshirtServicePort</con:endpoint></con:endpoints><con:operation id="dc3954cb-5566-4ff0-b02f-9baf7a3d7de4" isOneWay="false" action="http://mulesoft.org/tshirt-service/list-inventory" name="ListInventory" bindingOperationName="ListInventory" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="442dcbb8-c79c-4758-938f-ce3bc9cb0073" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://test-bzhang-my-soap-project.de-c1.cloudhub.io/TshirtService/TshirtServicePort</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tsh="http://mulesoft.org/tshirt-service">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <tsh:ListInventory/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://mulesoft.org/tshirt-service/list-inventory"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="06db9760-a4ca-4187-b49e-12f45413e969" isOneWay="false" action="http://mulesoft.org/tshirt-service/order-tshirt" name="OrderTshirt" bindingOperationName="OrderTshirt" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="1ced5c9a-d0c1-4369-9b74-b2abc077f3d7" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://test-bzhang-my-soap-project.de-c1.cloudhub.io/TshirtService/TshirtServicePort</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tsh="http://mulesoft.org/tshirt-service">\r
+   <soapenv:Header>\r
+      <tsh:AuthenticationHeader>\r
+         <apiKey>?</apiKey>\r
+      </tsh:AuthenticationHeader>\r
+   </soapenv:Header>\r
+   <soapenv:Body>\r
+      <tsh:OrderTshirt>\r
+         <size>?</size>\r
+         <email>?</email>\r
+         <name>?</name>\r
+         <address1>?</address1>\r
+         <address2>?</address2>\r
+         <city>?</city>\r
+         <stateOrProvince>?</stateOrProvince>\r
+         <postalCode>?</postalCode>\r
+         <country>?</country>\r
+      </tsh:OrderTshirt>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://mulesoft.org/tshirt-service/order-tshirt"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="0b80c360-fa2a-4bf9-ba64-6cea0b9ad4b5" isOneWay="false" action="http://mulesoft.org/tshirt-service/track-order" name="TrackOrder" bindingOperationName="TrackOrder" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="56231d92-1d55-4b11-a02e-9e23e1894b0b" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://test-bzhang-my-soap-project.de-c1.cloudhub.io/TshirtService/TshirtServicePort</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tsh="http://mulesoft.org/tshirt-service">\r
+   <soapenv:Header>\r
+      <tsh:AuthenticationHeader>\r
+         <apiKey>?</apiKey>\r
+      </tsh:AuthenticationHeader>\r
+   </soapenv:Header>\r
+   <soapenv:Body>\r
+      <tsh:TrackOrder>\r
+         <email>?</email>\r
+         <orderId>?</orderId>\r
+      </tsh:TrackOrder>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://mulesoft.org/tshirt-service/track-order"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>

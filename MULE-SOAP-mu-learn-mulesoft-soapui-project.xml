@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="363438d3-d611-4281-a4dc-81503bdd60a4" activeEnvironment="Default" name="MULE_SOAP_mu.learn.mulesoft" resourceRoot="" soapui-version="5.5.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="2b533c2b-a957-4fed-97b3-394af471d8c2" wsaVersion="NONE" name="TicketServiceServiceSoapBinding" type="wsdl" bindingName="{http://soap.training.mulesoft.com/}TicketServiceServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://mu.learn.mulesoft.com/delta?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://mu.learn.mulesoft.com/delta?wsdl"><con:part><con:url>http://mu.learn.mulesoft.com/delta?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="TicketServiceService" targetNamespace="http://soap.training.mulesoft.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://soap.training.mulesoft.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
+  <wsdl:types>
+    <xs:schema elementFormDefault="unqualified" targetNamespace="http://soap.training.mulesoft.com/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="findFlight" type="tns:findFlight"/>
+      <xs:element name="findFlightResponse" type="tns:findFlightResponse"/>
+      <xs:element name="listAllFlights" type="tns:listAllFlights"/>
+      <xs:element name="listAllFlightsResponse" type="tns:listAllFlightsResponse"/>
+      <xs:complexType name="listAllFlights">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="listAllFlightsResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:flight"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="flight">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="airlineName" type="xs:string"/>
+          <xs:element minOccurs="0" name="code" type="xs:string"/>
+          <xs:element minOccurs="0" name="departureDate" type="xs:string"/>
+          <xs:element minOccurs="0" name="destination" type="xs:string"/>
+          <xs:element name="emptySeats" type="xs:int"/>
+          <xs:element minOccurs="0" name="origin" type="xs:string"/>
+          <xs:element minOccurs="0" name="planeType" type="xs:string"/>
+          <xs:element name="price" type="xs:double"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="findFlight">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="destination" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="findFlightResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:flight"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="listAllFlightsResponse">
+    <wsdl:part element="tns:listAllFlightsResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findFlight">
+    <wsdl:part element="tns:findFlight" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="findFlightResponse">
+    <wsdl:part element="tns:findFlightResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listAllFlights">
+    <wsdl:part element="tns:listAllFlights" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="TicketService">
+    <wsdl:operation name="listAllFlights">
+      <wsdl:input message="tns:listAllFlights" name="listAllFlights"></wsdl:input>
+      <wsdl:output message="tns:listAllFlightsResponse" name="listAllFlightsResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findFlight">
+      <wsdl:input message="tns:findFlight" name="findFlight"></wsdl:input>
+      <wsdl:output message="tns:findFlightResponse" name="findFlightResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="TicketServiceServiceSoapBinding" type="tns:TicketService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="listAllFlights">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="listAllFlights">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="listAllFlightsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findFlight">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="findFlight">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="findFlightResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="TicketServiceService">
+    <wsdl:port binding="tns:TicketServiceServiceSoapBinding" name="TicketServicePort">
+      <soap:address location="http://mu.learn.mulesoft.com/delta"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://mu.learn.mulesoft.com/delta</con:endpoint></con:endpoints><con:operation id="53bb920d-c0cb-4982-aa9f-4cbe94e820af" isOneWay="false" action="" name="findFlight" bindingOperationName="findFlight" type="Request-Response" outputName="findFlightResponse" inputName="findFlight" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="e32ec0dc-2d46-451f-bfe3-d179765498d2" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://mu.learn.mulesoft.com/delta</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://soap.training.mulesoft.com/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <soap:findFlight>\r
+         <!--Optional:-->\r
+         <destination>SFO</destination>\r
+      </soap:findFlight>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://soap.training.mulesoft.com/TicketService/findFlight"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="702aded4-9aea-4912-a6c6-16b5323e7b47" isOneWay="false" action="" name="listAllFlights" bindingOperationName="listAllFlights" type="Request-Response" outputName="listAllFlightsResponse" inputName="listAllFlights" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="7f063c1a-1ebc-4465-a902-a7993e633436" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://mu.learn.mulesoft.com/delta</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soap="http://soap.training.mulesoft.com/">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <soap:listAllFlights/>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://soap.training.mulesoft.com/TicketService/listAllFlights"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
